@@ -12,6 +12,7 @@
 | 镜像大小 | 0x9000（很小，只有 58 个函数） |
 | MD5 | `8516410b49bb79c08c19a37c516dad72` |
 | SHA256 | `72bd55f4459c992b9caa1a33cb6862f1f3085ca35839c58dee8b75db22ca605f` |
+| 数字签名 | **WHQL 签名有效**（签署者 `CN=Microsoft Windows Hardware Compatibility Publisher`，颁发者 `Microsoft Windows Third Party Component CA 2012`，有效期 2025-02-21 ~ 2026-02-19，时间戳有效） |
 | 分析环境 | IDA Pro + Hex-Rays（IDB: KKYUM.sys.i64） |
 
 一句话定性：**这是一个典型的 BYOVD（Bring Your Own Vulnerable Driver）漏洞驱动**。它本身没有签名校验、没有访问控制，加载后任何普通用户态程序只要打开 `\\.\KKYUM` 设备，就能指挥内核干脏活：读写任意进程内存、伪造键盘鼠标输入、隐藏窗口、对抗截屏取证。
